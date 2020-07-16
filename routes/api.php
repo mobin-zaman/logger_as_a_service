@@ -20,8 +20,8 @@ Route::group([
 
 ], function ($router) {
 
-    Route::post('login','JWTAuthController@login');
-    Route::post('register', 'JWTAuthController@register');
+    Route::post('login','JWTAuthController@login')->name('auth.login');
+    Route::post('register', 'JWTAuthController@register')->name('auth.register');
     Route::post('logout', 'JWTAuthController@logout');
     Route::post('refresh', 'JWTAuthController@refresh');
     Route::get('profile', 'JWTAuthController@profile');
