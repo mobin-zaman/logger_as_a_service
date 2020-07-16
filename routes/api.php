@@ -27,3 +27,5 @@ Route::group([
     Route::get('profile', 'JWTAuthController@profile');
 
 });
+
+Route::apiResource('applications', 'ApplicationController');
