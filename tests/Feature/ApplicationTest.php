@@ -37,6 +37,26 @@ class ApplicationTest extends TestCase
 
         $response->assertStatus(201);
 
+        $response = $this->actingAs($user, 'api')
+            ->json('post', route('applications.store'),[
+                'name' => 'test2 application',
+                'description' =>'test description']);
+
+        $response->assertStatus(201);
+
+        $response = $this->actingAs($user, 'api')
+            ->json('post', route('applications.store'),[
+                'name' => 'test3 application',
+                'description' =>'test description']);
+
+        $response->assertStatus(201);
+
+        $response = $this->actingAs($user, 'api')
+            ->json('GET',route('applications.store'));
+
+        $response->assertStatus(200);
+        $this->assertEquals(3, count($response->json()["data"]));
+
     }
 
 
@@ -68,5 +88,6 @@ class ApplicationTest extends TestCase
         $response->assertStatus(422);
 
     }
+
 
 }
