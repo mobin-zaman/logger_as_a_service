@@ -20,10 +20,10 @@ class JwtAuthTest extends TestCase
         ];
 
 
-        $response = $this->json('POST', route('auth.register'), $data);
 
 //        var_dump($response->json()["message"]);
 
+        $response = $this->json('POST', route('auth.register'), $data);
 
         $response->assertStatus(201);
 

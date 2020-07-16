@@ -32,7 +32,7 @@ class ApplicationController extends Controller
             return response()->json($validator->errors(), 422);
         }
 
-        $application_with_same_name = Application::where('name', $request->name)->first();
+        $application_with_same_name = Application::where(['name' => $request->name],['user_id', $request->user()->id])->first();
 
 
         if($application_with_same_name != null) {
