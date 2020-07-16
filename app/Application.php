@@ -15,5 +15,8 @@ class Application extends Model
     protected $fillable = ['user_id','name', 'description', 'api_key'];
 
 
+    public function logs() {
+        return $this->hasMany(Log::class);
+    }
 
 }
