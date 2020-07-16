@@ -9,17 +9,7 @@ use Tests\TestCase;
 
 class JwtAuthTest extends TestCase
 {
-    /**
-     * A basic feature test example.
-     *
-     * @return void
-     */
-//    public function testExample()
-//    {
-//        $response = $this->get('/');
-//
-//        $response->assertStatus(200);
-//    }
+
 
     public function testRegister() {
 
@@ -62,22 +52,20 @@ class JwtAuthTest extends TestCase
 
     public function testLogin()
     {
-        //Create user
         User::create([
             'name' => 'test',
             'email'=>'test@gmail.com',
             'password' => bcrypt('secret1234')
         ]);
 
-        //attempt login
         $response = $this->json('POST',route('auth.login'),[
             'email' => 'test@gmail.com',
             'password' => 'secret1234',
         ]);
-        //Assert it was successful and a token was received
+
         $response->assertStatus(200);
         $this->assertArrayHasKey('access_token',$response->json());
-        //Delete the user
+
         User::where('email','test@gmail.com')->delete();
     }
 
