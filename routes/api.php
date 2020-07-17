@@ -29,3 +29,4 @@ Route::group([
 });
 
 Route::apiResource('applications', 'ApplicationController');
+Route::apiResource('logs', 'LogController');

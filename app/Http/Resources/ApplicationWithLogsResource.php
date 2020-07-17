@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class ApplicationResource extends JsonResource
+class ApplicationWithLogsResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -21,7 +21,7 @@ class ApplicationResource extends JsonResource
             'api_key' => $this->api_key,
             'created_at' => (string) $this->created_at,
             'updated_at' => (string) $this->updated_at,
-//            'logs' => $this->logs,
+            'logs' => $this->logs,
         ];
     }
 }

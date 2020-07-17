@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Application;
 use App\Http\Resources\ApplicationResource;
+use App\Http\Resources\ApplicationWithLogsResource;
+use App\Http\Resources\LogResource;
 use Hidehalo\Nanoid\Client;
 use Illuminate\Http\Request;
 use Validator;
@@ -16,9 +18,9 @@ class ApplicationController extends Controller
     }
 
 
-    public function index()
+    public function index(Request $request)
     {
-        return ApplicationResource::collection(Application::all());
+        return ApplicationResource::collection(Application::where('user_id', $request->user()->id)->get());
     }
 
     public function store(Request $request)
@@ -54,12 +56,10 @@ class ApplicationController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Application $application)
     {
-        //
+        return new ApplicationWithLogsResource($application);
     }
 
     /**
