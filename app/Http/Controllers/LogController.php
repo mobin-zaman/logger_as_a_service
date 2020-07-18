@@ -42,7 +42,7 @@ class LogController extends Controller
 
         $log = Log::create([
           'application_id' => $application->id,
-            'type' => $request->type || 'info',
+            'type' => ($request->type)? ($request->type): 'info',
             'description' => $request->description
         ]);
     }
