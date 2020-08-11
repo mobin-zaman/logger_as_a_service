@@ -38,7 +38,10 @@ class LogController extends Controller
      */
     public function store(Request $request)
     {
-        $application = Application::where(['api_key' => $request->api_key])->firstOrFail();
+//        $application = Application::where('api_key', 'LIKE', "%{$request->api_key}")->firstOrFail();
+        $application = Application::whereRaw("BINARY `api_key` = ?", [$request->api_key])->firstOrFail();
+
+
 
         $log = Log::create([
           'application_id' => $application->id,
