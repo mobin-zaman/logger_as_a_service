@@ -34,7 +34,6 @@ Route::group([
 
     Route::get('/{application_id}', 'LogController@index');
     Route::post('/', 'LogController@store');
+    Route::get('/count/{application_id}', 'LogController@get_log_count');
+    Route::get('/{application_id}/{count}', 'LogController@get_latest_logs');
 });
-
-Route::apiResource('applications', 'ApplicationController');
-

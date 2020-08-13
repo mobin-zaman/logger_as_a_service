@@ -29,6 +29,20 @@ class LogController extends Controller
         return LogResource::collection(Log::where(['application_id'=>$request->route('application_id')])->orderBy('id','DESC')->get());
     }
 
+    public function get_log_count(Request $request) {
+        $application = Application::where(['id'=>$request->route('application_id'),'user_id'=> $request->user()->id])->firstOrFail();
+        $count =  Log::where(['application_id'=>$request->route('application_id')])->count();
+        return response()->json([
+            'log_count' => $count
+        ]);
+    }
+
+    public function get_latest_logs(Request $request) {
+        $application = Application::where(['id'=>$request->route('application_id'),'user_id'=> $request->user()->id])->firstOrFail();
+        $logs =  Log::where(['application_id'=>$request->route('application_id')])->latest()->take($request->route('count'))->orderBy('id', 'DESC')->get();
+        return LogResource::collection($logs);
+    }
+
     /**
      * Store a newly created resource in storage.
      *
