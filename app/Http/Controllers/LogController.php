@@ -26,7 +26,7 @@ class LogController extends Controller
 
         $application = Application::where(['id'=>$request->route('application_id'),'user_id'=> $request->user()->id])->firstOrFail();
 
-        return LogResource::collection(Log::where(['application_id'=>$request->route('application_id')])->get());
+        return LogResource::collection(Log::where(['application_id'=>$request->route('application_id')])->orderBy('id','DESC')->get());
     }
 
     /**
