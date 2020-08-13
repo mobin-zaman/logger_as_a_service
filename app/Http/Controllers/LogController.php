@@ -13,7 +13,6 @@ class LogController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
      */
 
     public function __construct() {
@@ -22,12 +21,12 @@ class LogController extends Controller
 
 //    public function index(Request $request)
 
-    public function index(Application $application)
+    public function index(Request $request)
     {
-//        $application = Application::where(['user_id'=> $request->user()->id], ['application_id'=> $request->application_id])->firstOrFail();
 
-//        return ApplicationResource::collection($application);
-//        return LogResource::collection($application->logs());
+        $application = Application::where(['id'=>$request->route('application_id'),'user_id'=> $request->user()->id])->firstOrFail();
+
+        return LogResource::collection(Log::where(['application_id'=>$request->route('application_id')])->get());
     }
 
     /**
@@ -50,16 +49,16 @@ class LogController extends Controller
         ]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+//    /**
+//     * Display the specified resource.
+//     *
+//     * @param  int  $id
+//     * @return \Illuminate\Http\Response
+//     */
+//    public function show($id)
+//    {
+//        //
+//    }
 
     /**
      * Update the specified resource in storage.

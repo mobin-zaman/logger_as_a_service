@@ -27,6 +27,14 @@ Route::group([
     Route::get('profile', 'JWTAuthController@profile');
 
 });
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'logs'
+], function($router) {
+
+    Route::get('/{application_id}', 'LogController@index');
+    Route::post('/', 'LogController@store');
+});
 
 Route::apiResource('applications', 'ApplicationController');
-Route::apiResource('logs', 'LogController');
+

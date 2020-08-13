@@ -18,7 +18,9 @@ class LogResource extends JsonResource
             'id' => $this->id,
             'type' => $this->type,
             'description' => $this->description,
-            'created_at' => (string) $this->created_at
+            'application_id' => $this->application_id,
+            'created_at' => (string) $this->created_at,
+            'updated_at' => (string) $this->updated_at
         ];
     }
 }
