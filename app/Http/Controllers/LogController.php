@@ -17,6 +17,7 @@ class LogController extends Controller
 
     public function __construct() {
         $this->middleware('auth:api')->except(['store']);
+        $this->middleware('cors');
     }
 
 //    public function index(Request $request)
