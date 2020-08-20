@@ -59,7 +59,7 @@ class ApplicationController extends Controller
      */
     public function show(Application $application)
     {
-        return new ApplicationWithLogsResource($application);
+        return new ApplicationResource($application);
     }
 
     /**

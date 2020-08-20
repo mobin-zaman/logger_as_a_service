@@ -28,7 +28,7 @@ Route::group([
 
 });
 
-Route::apiResource('applications', 'ApplicationController'); 
+Route::apiResource('applications', 'ApplicationController');
 
 Route::group([
     'middleware' => 'api',
@@ -36,7 +36,8 @@ Route::group([
 ], function($router) {
 
     Route::get('/{application_id}', 'LogController@index');
-    Route::post('/', 'LogController@store');
-    Route::get('/count/{application_id}', 'LogController@get_log_count');
+    Route::post('/', 'LogController@store')->middleware('throttle:600,1');
+    Route::get('/count/{application_id}', 'LogController@get_log_count')->middleware('throttle:600,1');;
     Route::get('/{application_id}/{count}', 'LogController@get_latest_logs');
+    Route::get('/{application_id}/{id}', 'LogController@get_log_by_id');
 });

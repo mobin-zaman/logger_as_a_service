@@ -43,6 +43,12 @@ class LogController extends Controller
         return LogResource::collection($logs);
     }
 
+    public function get_log_by_id(Request $request){
+        $application = Application::where(['id'=>$request->route('application_id'),'user_id'=> $request->user()->id])->firstOrFail();
+        $logs =  Log::where(['id'=>$request->route('id')])->get();
+        return LogResource::collection($logs);
+    }
+
     /**
      * Store a newly created resource in storage.
      *
