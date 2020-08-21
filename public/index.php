@@ -1,5 +1,8 @@
 <?php
 
+
+
+
 /**
  * Laravel - A PHP Framework For Web Artisans
  *
@@ -34,8 +37,6 @@ require __DIR__.'/../vendor/autoload.php';
 | the responses back to the browser and delight our users.
 |
 */
-header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
 
 $app = require_once __DIR__.'/../bootstrap/app.php';
 
@@ -56,6 +57,7 @@ $kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
 $response = $kernel->handle(
     $request = Illuminate\Http\Request::capture()
 );
+
 
 $response->send();
 
